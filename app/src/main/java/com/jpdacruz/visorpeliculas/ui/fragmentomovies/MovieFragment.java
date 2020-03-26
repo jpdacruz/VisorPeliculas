@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.ui;
+package com.jpdacruz.visorpeliculas.ui.fragmentomovies;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,16 +9,15 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.jpdacruz.visorpeliculas.R;
-import com.jpdacruz.visorpeliculas.data.local.MovieEntity;
+import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 import com.jpdacruz.visorpeliculas.data.network.Resource;
-import com.jpdacruz.visorpeliculas.ui.adapter.MyMovieRecyclerViewAdapter;
-import com.jpdacruz.visorpeliculas.ui.viewmodel.MovieViewModel;
 
 import java.util.List;
 
@@ -26,7 +25,7 @@ public class MovieFragment extends Fragment {
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
-    private MyMovieRecyclerViewAdapter adapter;
+    private MovieAdapter adapter;
     private List<MovieEntity> listadoPeliculas;
     private MovieViewModel movieViewModel;
 
@@ -64,12 +63,12 @@ public class MovieFragment extends Fragment {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
+                recyclerView.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
             } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
+                recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             }
 
-            adapter = new MyMovieRecyclerViewAdapter(getActivity(), listadoPeliculas);
+            adapter = new MovieAdapter(getActivity(), listadoPeliculas);
             recyclerView.setAdapter(adapter);
             loadMovies();
         }

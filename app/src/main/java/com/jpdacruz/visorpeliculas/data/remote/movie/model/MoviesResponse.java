@@ -1,6 +1,6 @@
-package com.jpdacruz.visorpeliculas.data.remote.model;
+package com.jpdacruz.visorpeliculas.data.remote.movie.model;
 
-import com.jpdacruz.visorpeliculas.data.local.MovieEntity;
+import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 
 import java.util.List;
 

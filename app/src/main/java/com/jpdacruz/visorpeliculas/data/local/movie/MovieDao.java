@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.data.local;
+package com.jpdacruz.visorpeliculas.data.local.movie;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;

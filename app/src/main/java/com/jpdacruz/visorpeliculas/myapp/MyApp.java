@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.app;
+package com.jpdacruz.visorpeliculas.myapp;
 
 import android.app.Application;
 import android.content.Context;

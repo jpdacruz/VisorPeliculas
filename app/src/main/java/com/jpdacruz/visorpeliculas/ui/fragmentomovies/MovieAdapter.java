@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.ui.adapter;
+package com.jpdacruz.visorpeliculas.ui.fragmentomovies;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -10,18 +10,17 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.jpdacruz.visorpeliculas.R;
-import com.jpdacruz.visorpeliculas.data.local.MovieEntity;
-import com.jpdacruz.visorpeliculas.data.remote.model.Constantes;
-
+import com.jpdacruz.visorpeliculas.data.Constantes;
+import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 
 import java.util.List;
 
-public class MyMovieRecyclerViewAdapter extends RecyclerView.Adapter<MyMovieRecyclerViewAdapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
     private List<MovieEntity> mValues;
     private Context ctx;
 
-    public MyMovieRecyclerViewAdapter(Context context,List<MovieEntity> items) {
+    public MovieAdapter(Context context, List<MovieEntity> items) {
         mValues = items;
         ctx = context;
     }

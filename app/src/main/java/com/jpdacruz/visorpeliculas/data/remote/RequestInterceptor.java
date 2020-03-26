@@ -1,4 +1,6 @@
-package com.jpdacruz.visorpeliculas.data.remote.model;
+package com.jpdacruz.visorpeliculas.data.remote;
+
+import com.jpdacruz.visorpeliculas.data.Constantes;
 
 import java.io.IOException;
 

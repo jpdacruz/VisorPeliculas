@@ -5,15 +5,15 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Room;
 
 import com.jpdacruz.visorpeliculas.data.Constantes;
-import com.jpdacruz.visorpeliculas.myapp.MyApp;
-import com.jpdacruz.visorpeliculas.data.local.movie.MovieDao;
-import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 import com.jpdacruz.visorpeliculas.data.local.MovieRoomDataBase;
+import com.jpdacruz.visorpeliculas.data.local.series.SerieDao;
+import com.jpdacruz.visorpeliculas.data.local.series.SerieEntity;
 import com.jpdacruz.visorpeliculas.data.network.NetworkBoundResource;
 import com.jpdacruz.visorpeliculas.data.network.Resource;
-import com.jpdacruz.visorpeliculas.data.remote.movie.MovieApiService;
-import com.jpdacruz.visorpeliculas.data.remote.movie.model.MoviesResponse;
 import com.jpdacruz.visorpeliculas.data.remote.RequestInterceptor;
+import com.jpdacruz.visorpeliculas.data.remote.serie.SerieApiService;
+import com.jpdacruz.visorpeliculas.data.remote.serie.model.SeriesResponse;
+import com.jpdacruz.visorpeliculas.myapp.MyApp;
 
 import java.util.List;
 
@@ -22,18 +22,19 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MovieRepository {
+public class SerieRepository {
 
-    private final MovieApiService movieApiService;
-    private final MovieDao movieDao;
+    private final SerieApiService serieApiService;
+    private final SerieDao serieDao;
 
-    public MovieRepository() {
+    public SerieRepository() {
 
         //instancias el MovieDao de db local en el repositorio
 
         MovieRoomDataBase movieRoomDataBase =
-                Room.databaseBuilder(MyApp.getContext(),MovieRoomDataBase.class,Constantes.DB_NAME).build();
-        movieDao = movieRoomDataBase.getMovieDao();
+                Room.databaseBuilder(MyApp.getContext(),MovieRoomDataBase.class, Constantes.DB_NAME).build();
+        serieDao = movieRoomDataBase.getSerieDao();
+
         //incluir cabecera api por interceptor
         //peticion tokken
 
@@ -48,33 +49,31 @@ public class MovieRepository {
                 .client(cliente)
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
-        movieApiService = retrofit.create(MovieApiService.class);
+        serieApiService = retrofit.create(SerieApiService.class);
     }
 
-    public LiveData<Resource<List<MovieEntity>>> getPopularMovies(){
+    public LiveData<Resource<List<SerieEntity>>> getPopularSeries(){
 
         //movientiry de la base de datos local y movieResponse de la base de datos de la api
         //con este metodo se decide de donde se buscan los datos
-        return new NetworkBoundResource<List<MovieEntity>, MoviesResponse>(){
+        return new NetworkBoundResource<List<SerieEntity>, SeriesResponse>(){
 
             @Override
-            protected void saveCallResult(@NonNull MoviesResponse item) {
-                movieDao.saveMovies(item.getResults());
+            protected void saveCallResult(@NonNull SeriesResponse item) {
+                serieDao.saveSeries(item.getResults());
             }
 
             @NonNull
             @Override
-            protected LiveData<List<MovieEntity>> loadFromDb() {
-                return movieDao.loadPopularMovies();
+            protected LiveData<List<SerieEntity>> loadFromDb() {
+                return serieDao.loadPopularSeriesDao();
             }
 
             @NonNull
             @Override
-            protected Call<MoviesResponse> createCall() {
-                return movieApiService.loadUpcomingMoviews();
+            protected Call<SeriesResponse> createCall() {
+                return serieApiService.loadPopularSeriesRemote();
             }
         }.getAsLiveData();
     }
-
-
 }

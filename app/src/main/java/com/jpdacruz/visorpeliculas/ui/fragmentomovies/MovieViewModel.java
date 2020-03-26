@@ -1,9 +1,7 @@
-package com.jpdacruz.visorpeliculas.ui.viewmodel;
-
+package com.jpdacruz.visorpeliculas.ui.fragmentomovies;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
-import com.jpdacruz.visorpeliculas.data.local.MovieEntity;
+import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 import com.jpdacruz.visorpeliculas.data.network.Resource;
 import com.jpdacruz.visorpeliculas.data.repository.MovieRepository;
 
