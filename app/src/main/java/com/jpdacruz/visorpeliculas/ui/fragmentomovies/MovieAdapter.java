@@ -17,6 +17,12 @@ import java.util.List;
 
 public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
 
+    private static final String TAG = "MovieAdapter";
+    /**
+     * definir List viewmodel
+     * definir context para libreria GLIDE
+     * ELIMINE LISTENER , comunicacion por viewmodel
+     */
     private List<MovieEntity> mValues;
     private Context ctx;
 

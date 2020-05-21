@@ -23,6 +23,10 @@ import java.util.List;
 
 public class MovieFragment extends Fragment {
 
+    /**
+     * elimine metodo por defect onAttach y onDetach u onListFragmentInteraction
+     * la comunicacion no se va a hacer por listener sino por viewModel
+     */
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 2;
     private MovieAdapter adapter;
@@ -68,6 +72,9 @@ public class MovieFragment extends Fragment {
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
             }
 
+            /**
+             * pasar context, List
+             */
             adapter = new MovieAdapter(getActivity(), listadoPeliculas);
             recyclerView.setAdapter(adapter);
             loadMovies();

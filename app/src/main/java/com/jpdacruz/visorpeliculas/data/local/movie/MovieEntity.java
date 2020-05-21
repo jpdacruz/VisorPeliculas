@@ -7,6 +7,9 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * definir entidad-definir tabla movies
+ */
 @Entity(tableName = "movies")
 public class MovieEntity {
 
