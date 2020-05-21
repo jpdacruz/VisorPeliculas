@@ -12,7 +12,7 @@ import com.jpdacruz.visorpeliculas.data.network.NetworkBoundResource;
 import com.jpdacruz.visorpeliculas.data.network.Resource;
 import com.jpdacruz.visorpeliculas.data.remote.RequestInterceptor;
 import com.jpdacruz.visorpeliculas.data.remote.serie.SerieApiService;
-import com.jpdacruz.visorpeliculas.data.remote.serie.model.SeriesResponse;
+import com.jpdacruz.visorpeliculas.data.remote.serie.SeriesResponse;
 import com.jpdacruz.visorpeliculas.myapp.MyApp;
 
 import java.util.List;

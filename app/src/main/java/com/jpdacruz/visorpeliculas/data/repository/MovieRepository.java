@@ -12,7 +12,7 @@ import com.jpdacruz.visorpeliculas.data.local.MovieRoomDataBase;
 import com.jpdacruz.visorpeliculas.data.network.NetworkBoundResource;
 import com.jpdacruz.visorpeliculas.data.network.Resource;
 import com.jpdacruz.visorpeliculas.data.remote.movie.MovieApiService;
-import com.jpdacruz.visorpeliculas.data.remote.movie.model.MoviesResponse;
+import com.jpdacruz.visorpeliculas.data.remote.movie.MoviesResponse;
 import com.jpdacruz.visorpeliculas.data.remote.RequestInterceptor;
 
 import java.util.List;
@@ -27,25 +27,42 @@ public class MovieRepository {
     private final MovieApiService movieApiService;
     private final MovieDao movieDao;
 
+    /**
+     * constructor
+     */
     public MovieRepository() {
 
-        //instancias el MovieDao de db local en el repositorio
+        /**
+         * crea room database
+         * parametros MyApp.Context,
+         * asignamos nombre db
+         */
 
         MovieRoomDataBase movieRoomDataBase =
-                Room.databaseBuilder(MyApp.getContext(),MovieRoomDataBase.class,Constantes.DB_NAME).build();
+                Room.databaseBuilder(MyApp.getContext(),
+                        MovieRoomDataBase.class,
+                        Constantes.DB_NAME)
+                        .build();
         movieDao = movieRoomDataBase.getMovieDao();
-        //incluir cabecera api por interceptor
-        //peticion tokken
 
+        /**
+         * request interceptor
+         * incluir en la cabecera el Tokken (api key)
+         * a las peticiones que hacemos a la api
+         * con esto indicamos que cliente somos
+         */
         OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
         okHttpBuilder.addInterceptor(new RequestInterceptor());
         OkHttpClient cliente = okHttpBuilder.build();
 
-
+        /**
+         * conexion remota retrofit
+         */
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constantes.API_BASE_URL)
-                //agregamos el cliente que obtenermos en Okhtttp al cual le pusimos el interceptor
+                //agregamos el cliente
                 .client(cliente)
+                //conversor Json->Gson
                 .addConverterFactory(GsonConverterFactory.create()).build();
 
         movieApiService = retrofit.create(MovieApiService.class);

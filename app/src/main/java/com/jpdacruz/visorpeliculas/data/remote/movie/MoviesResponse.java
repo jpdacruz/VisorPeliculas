@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.data.remote.movie.model;
+package com.jpdacruz.visorpeliculas.data.remote.movie;
 
 import com.jpdacruz.visorpeliculas.data.local.movie.MovieEntity;
 
@@ -6,6 +6,10 @@ import java.util.List;
 
 public class MoviesResponse {
 
+    /**
+     * model-> definir clase Movie response
+     * generar get y set result
+     */
     private List<MovieEntity> results;
 
     public List<MovieEntity> getResults() {

@@ -1,4 +1,4 @@
-package com.jpdacruz.visorpeliculas.data.remote.serie.model;
+package com.jpdacruz.visorpeliculas.data.remote.serie;
 
 import com.jpdacruz.visorpeliculas.data.local.series.SerieEntity;
 

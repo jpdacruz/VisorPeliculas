@@ -42,6 +42,12 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
 
+        /**
+         * indicar contexto
+         * cargar imagen URi calidad 500w
+         * en image view
+         * seteo en manifest userpermission -> internet
+         */
         Glide.with(ctx)
                 .load(Constantes.API_IMAGES_URL + holder.mItem.getPosterPath())
                 .into(holder.imageView);
@@ -55,6 +61,9 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
+        /**
+         * evitar recibir mValues = Null
+         */
         if(mValues!=null)
             return mValues.size();
         else return 0;
