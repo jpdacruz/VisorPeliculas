@@ -70,8 +70,10 @@ public class MovieRepository {
 
     public LiveData<Resource<List<MovieEntity>>> getPopularMovies(){
 
-        //movientiry de la base de datos local y movieResponse de la base de datos de la api
-        //con este metodo se decide de donde se buscan los datos
+        /**
+         * obtener datos de la api
+         */
+
         return new NetworkBoundResource<List<MovieEntity>, MoviesResponse>(){
 
             @Override

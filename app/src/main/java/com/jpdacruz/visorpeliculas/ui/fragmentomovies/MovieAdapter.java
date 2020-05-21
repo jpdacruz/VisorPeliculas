@@ -53,6 +53,10 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 .into(holder.imageView);
     }
 
+    /**
+     * metodo asignar al list los valores de listadoPeliculas del fragment
+     * @param movies
+     */
     public void setData(List<MovieEntity> movies){
 
         this.mValues = movies;
